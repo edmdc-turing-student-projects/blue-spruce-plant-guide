@@ -13,6 +13,7 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.2",
+    "node-fetch": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -28,6 +29,7 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
     "eslint": "6.x",
+    "eslint-config-airbnb": "^18.2.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-flowtype": "4.x",
@@ -48,9 +50,41 @@
     "webpack-dev-server": "^3.11.0"
   },
   "eslintConfig": {
-    "extends": "react-app",
+    "extends": [
+      "react-app",
+      "airbnb"
+    ],
     "parser": "babel-eslint",
-    "rules": {}
+    "rules": {
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true
+        }
+      ],
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "react/forbid-prop-types": 0,
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "max-lines-per-function": [
+        "error",
+        90
+      ],
+      "semi": [
+        "error",
+        "never"
+      ]
+    }
   },
   "jest": {
     "moduleNameMapper": {
