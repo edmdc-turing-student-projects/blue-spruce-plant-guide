@@ -9,7 +9,7 @@ function App () {
     const poop = async () => {
     try{
       const apple = await getSomeNativePlants()
-      console.log(apple)
+      console.log(apple, 'hello')
       setPlantCatalog(getSomeNativePlants())
     } catch(error) {
       console.error(error)
