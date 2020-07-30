@@ -19,18 +19,31 @@ function App() {
   }, [])
 
   const createPlantCatalog = () => {
-    plantCatalog.map(plant => {
-      const {id, common_name, scientific_name, image_url} = plant
+    const plantInfoCards = plantCatalog.map((plant) => {
+      const {
+        id, common_name, scientific_name, image_url
+      } = plant
       return (
-        <figure className={`Info card for: ${common_name}`}>
-          <img src={`${image_url}`} alt={`Image for: ${common_name}`} />
+        <figure id={id} className={`Info card for: ${common_name}`}>
+          <img src={`${image_url}`} alt={`${common_name}`} />
+          <figcaption>
+            <p><b>{`${common_name}`}</b></p>
+            <p><i>{`${scientific_name}`}</i></p>
+          </figcaption>
+        </figure>
       )
     })
+    return (
+      <>
+        {plantInfoCards}
+      </>
+    )
   }
 
   return (
     <div className={styles.main}>
       <h1>My React App</h1>
+      {plantCatalog.length && createPlantCatalog()}
     </div>
   )
 }
