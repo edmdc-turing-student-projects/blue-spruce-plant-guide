@@ -1,30 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import styles from './App.scss'
-import { useNativePlantData } from '../Hooks/useNativePlantData'
-import { getSomeNativePlants } from '../ApiCalls'
+import getColoradoNativePlants from '../ApiCalls'
 
-function App () {
+function App() {
   const [plantCatalog, setPlantCatalog] = useState([])
+  const [error, setError] = useState()
+
   useEffect(() => {
-    const poop = async () => {
-    try{
-      const apple = await getSomeNativePlants()
-      console.log(apple, 'hello')
-      setPlantCatalog(getSomeNativePlants())
-    } catch(error) {
-      console.error(error)
+    const getPlantInfo = async () => {
+      try {
+        const plantInfoRequests = await getColoradoNativePlants()
+        setPlantCatalog(plantInfoRequests)
+      } catch (err) {
+        setError(err)
+      }
     }
-    }
-    poop();
+    getPlantInfo()
   }, [])
 
-  console.log(plantCatalog)
+  const createPlantCatalog = () => {
+    plantCatalog.map(plant => {
+      const {id, common_name, scientific_name, image_url} = plant
+      return (
+        <figure className={`Info card for: ${common_name}`}>
+          <img src={`${image_url}`} alt={`Image for: ${common_name}`} />
+      )
+    })
+  }
 
   return (
-  <div className={styles.main}>
-    <h1>My React App</h1>
-  </div>
-  );
+    <div className={styles.main}>
+      <h1>My React App</h1>
+    </div>
+  )
 }
 
-export default App;
+export default App

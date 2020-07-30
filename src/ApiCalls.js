@@ -1,17 +1,26 @@
-export default function ApiCalls() {
-  const rootUrl = 'trefle.io/api/v1'
-  const apiToken = 'token=wf2V-4m1I00HHw7D-CP1TjvqmirvMX6veHLLikMq8hY'
+const createRequestPaths = () => {
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  const rootUrl = 'https://trefle.io/api/v1'
+  const apiToken = 'token=tz_mp8S975h1F3mwzjAKmXlkig-rSuOVhJlg858ToOM'
+  const path2ColoradoNativePlants = 'distributions/colorado/plants?filter%5Bestablishment%5D=native'
 
   return {
-    getSomeNativePlants: async () => {
-      try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/${rootUrl}/distributions/colorado/plants?filter%5Bestablishment%5D=native&${apiToken}&page=1`)
-        const plantDataPageOne = await response.json()
-        console.log(plantDataPageOne)
-        return plantDataPageOne
-      } catch (error) {
-        return { ...error }
-      }
-    }
+    proxyUrl,
+    coloradoNativePlantsUrl: `${rootUrl}/${path2ColoradoNativePlants}&${apiToken}`
   }
 }
+
+export default async function getColoradoNativePlants() {
+  const { proxyUrl, coloradoNativePlantsUrl } = createRequestPaths()
+  const pageNumbers = ['2', '5', '13', '34', '89']
+
+  const responsePart = await fetch(`${proxyUrl}${coloradoNativePlantsUrl}&page=${pageNumbers[0]}`)
+  const { data } = await responsePart.json()
+  return data
+}
+
+// // const responsePartSix = await fetch(`${coloradoNativePlantsUrl}&page=13`)
+// const responsePartSeven = await fetch(`${coloradoNativePlantsUrl}&page=21`)
+// const responsePartEight = await fetch(`${coloradoNativePlantsUrl}&page=34`)
+// const responsePartNine = await fetch(`${coloradoNativePlantsUrl}&page=55`)
+// const responsePartTen = await fetch(`${coloradoNativePlantsUrl}&page=89`)
