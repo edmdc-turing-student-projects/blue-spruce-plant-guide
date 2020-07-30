@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "test": "jest --watch"
   },
   "author": "Edwin Montealvo",
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -19,6 +21,7 @@
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
+    "@testing-library/react": "^10.4.7",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
     "babel-eslint": "10.x",
@@ -33,6 +36,8 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "2.x",
     "html-webpack-plugin": "^4.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.1.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
@@ -46,5 +51,10 @@
     "extends": "react-app",
     "parser": "babel-eslint",
     "rules": {}
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "identity-obj-proxy"
+    }
   }
 }
