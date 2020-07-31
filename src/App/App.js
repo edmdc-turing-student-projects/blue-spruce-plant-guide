@@ -39,7 +39,7 @@ function App() {
             />
           </>
         )}
-      <Route path="/">
+      <Route exact path="/">
         <Home />
       </Route>
     </Router>
