@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styles from './App.scss'
 import Home from '../Home/Home'
 import PlantIndex from '../PlantIndex/PlantIndex'
+import Header from '../Header/Header'
 import getColoradoNativePlants from '../ApiCalls'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <Router>
+      <Header />
       {plantCatalog.length
         && (
         <Route

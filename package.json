@@ -85,7 +85,8 @@
       "semi": [
         "error",
         "never"
-      ]
+      ],
+      "camelcase": ["error", {"properties": "never"}]
     }
   },
   "jest": {
