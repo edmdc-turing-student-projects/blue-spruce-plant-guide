@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styles from './App.scss'
 import Home from '../Home/Home'
@@ -8,6 +8,12 @@ import Quiz from '../Quiz/Quiz'
 import getColoradoNativePlants from '../ApiCalls'
 
 function App() {
+  const initialSate = {
+    plantCatalog = [],
+    quizMode = ''
+  }
+
+  const [ state, dispatch ] = useReducer(appReducer, initialSate)
   const [plantCatalog, setPlantCatalog] = useState([])
   const [error, setError] = useState()
 
