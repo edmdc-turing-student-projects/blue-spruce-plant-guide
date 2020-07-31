@@ -12,5 +12,13 @@ export default function appReducer(state, action) {
         quizMode: action.payload
       }
     }
+    case 'error': {
+      return {
+        ...state,
+        error: action.payload
+      }
+    }
+    default:
+      return { state }
   }
 }

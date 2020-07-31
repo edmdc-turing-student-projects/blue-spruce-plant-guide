@@ -5,25 +5,25 @@ import Home from '../Home/Home'
 import PlantIndex from '../PlantIndex/PlantIndex'
 import Header from '../Header/Header'
 import Quiz from '../Quiz/Quiz'
+import appReducer from '../Hooks/appReducer'
 import getColoradoNativePlants from '../ApiCalls'
 
 function App() {
   const initialSate = {
-    plantCatalog = [],
-    quizMode = ''
+    plantCatalog: [],
+    quizMode: ''
   }
 
-  const [ state, dispatch ] = useReducer(appReducer, initialSate)
-  const [plantCatalog, setPlantCatalog] = useState([])
-  const [error, setError] = useState()
+  const [state, dispatch] = useReducer(appReducer, initialSate)
+  const { plantCatalog, quizMode } = state
 
   useEffect(() => {
     const getPlantInfo = async () => {
       try {
         const plantInfoRequests = await getColoradoNativePlants()
-        setPlantCatalog(plantInfoRequests)
+        dispatch({ type: 'getPlants', payload: plantInfoRequests })
       } catch (err) {
-        setError(err)
+        dispatch({ type: 'error', payload: { ...err } })
       }
     }
     getPlantInfo()
@@ -32,7 +32,7 @@ function App() {
   return (
     <Router>
       <Header />
-      {plantCatalog.length
+      {state.plantCatalog.length
         && (
           <>
             <Route
