@@ -19,7 +19,7 @@ export default async function getColoradoNativePlants() {
   return data
 }
 
-// // const responsePartSix = await fetch(`${coloradoNativePlantsUrl}&page=13`)
+// const responsePartSix = await fetch(`${coloradoNativePlantsUrl}&page=13`)
 // const responsePartSeven = await fetch(`${coloradoNativePlantsUrl}&page=21`)
 // const responsePartEight = await fetch(`${coloradoNativePlantsUrl}&page=34`)
 // const responsePartNine = await fetch(`${coloradoNativePlantsUrl}&page=55`)

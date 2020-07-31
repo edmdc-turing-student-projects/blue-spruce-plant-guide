@@ -8,7 +8,7 @@ export default function Home({ chooseQuizMode }) {
       <NavLink to="/quiz">
         <button
           type="button"
-          onClick={() => chooseQuizMode('images')}
+          onClick={() => chooseQuizMode(true)}
         >
           Images
         </button>
@@ -16,7 +16,7 @@ export default function Home({ chooseQuizMode }) {
       <NavLink to="/quiz">
         <button
           type="button"
-          onClick={() => chooseQuizMode('scientificName')}
+          onClick={() => chooseQuizMode(false)}
         >
           Scientific Name
         </button>
