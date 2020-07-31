@@ -15,7 +15,7 @@ function App() {
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
-  const { plantCatalog, quizMode } = state
+  const { plantCatalog } = state
 
   useEffect(() => {
     const getPlantInfo = async () => {
@@ -28,6 +28,10 @@ function App() {
     }
     getPlantInfo()
   }, [])
+
+  function chooseQuizMode(mode) {
+    dispatch({ type: 'quizMode', payload: mode })
+  }
 
   return (
     <Router>
@@ -46,7 +50,7 @@ function App() {
           </>
         )}
       <Route exact path="/">
-        <Home />
+        <Home chooseQuizMode={chooseQuizMode} />
       </Route>
     </Router>
   )
