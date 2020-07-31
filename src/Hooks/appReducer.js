@@ -6,10 +6,17 @@ export default function appReducer(state, action) {
         plantCatalog: [...action.payload]
       }
     }
+    case 'setCurrentPlant': {
+      const randomIndex = Math.floor(Math.random() * state.plantCatalog.length)
+      return {
+        ...state,
+        currentPlant: { ...state.plantCatalog[randomIndex] }
+      }
+    }
     case 'quizMode': {
       return {
         ...state,
-        quizMode: action.payload
+        imageMode: action.payload
       }
     }
     case 'error': {
