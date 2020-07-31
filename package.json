@@ -85,7 +85,8 @@
       "semi": [
         "error",
         "never"
-      ]
+      ],
+      "camelcase": 0
     }
   },
   "jest": {
