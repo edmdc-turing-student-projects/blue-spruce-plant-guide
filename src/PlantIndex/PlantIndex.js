@@ -7,7 +7,11 @@ export default function PlantIndex({ plantCatalog }) {
     } = plant
     return (
       <figure key={id} className="plantCard">
-        <img className="plantImage" src={`${image_url}`} alt={`${common_name}`} />
+        <img
+          className="plantImage"
+          src={`${image_url}`}
+          alt={`${common_name}`}
+        />
         <figcaption>
           <p><b>{`${common_name}`}</b></p>
           <p><i>{`${scientific_name}`}</i></p>
@@ -21,3 +25,4 @@ export default function PlantIndex({ plantCatalog }) {
     </>
   )
 }
+

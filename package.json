@@ -86,7 +86,7 @@
         "error",
         "never"
       ],
-      "camelcase": ["error", {"properties": "never"}]
+      "camelcase": 0
     }
   },
   "jest": {

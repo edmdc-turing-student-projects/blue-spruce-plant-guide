@@ -4,6 +4,7 @@ import styles from './App.scss'
 import Home from '../Home/Home'
 import PlantIndex from '../PlantIndex/PlantIndex'
 import Header from '../Header/Header'
+import Quiz from '../Quiz/Quiz'
 import getColoradoNativePlants from '../ApiCalls'
 
 function App() {
@@ -27,10 +28,16 @@ function App() {
       <Header />
       {plantCatalog.length
         && (
-        <Route
-          path="/plantIndex"
-          render={() => <PlantIndex plantCatalog={plantCatalog} />}
-        />
+          <>
+            <Route
+              path="/plantIndex"
+              render={() => <PlantIndex plantCatalog={plantCatalog} />}
+            />
+            <Route
+              path="/quiz"
+              render={() => <Quiz />}
+            />
+          </>
         )}
       <Route path="/">
         <Home />
