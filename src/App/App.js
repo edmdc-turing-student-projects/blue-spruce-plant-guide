@@ -24,8 +24,8 @@ function App() {
         id, common_name, scientific_name, image_url
       } = plant
       return (
-        <figure id={id} className={`Info card for: ${common_name}`}>
-          <img src={`${image_url}`} alt={`${common_name}`} />
+        <figure id={id} className={styles.plantCard}>
+          <img className={styles.plantImage} src={`${image_url}`} alt={`${common_name}`} />
           <figcaption>
             <p><b>{`${common_name}`}</b></p>
             <p><i>{`${scientific_name}`}</i></p>

@@ -3,4 +3,15 @@ $primary-color: cornflowerblue;
 .main {
 	color: $primary-color;
 	text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(80px, 245px))
+}
+
+.plantCard {
+  color: black;
+}
+
+.plantImage {
+  width: 12vw;
+  height: 15vh;
 }
