@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styles from './App.scss'
 import getColoradoNativePlants from '../ApiCalls'
 
@@ -41,10 +42,15 @@ function App() {
   }
 
   return (
-    <div className={styles.main}>
-      <h1>My React App</h1>
-      {plantCatalog.length && createPlantCatalog()}
-    </div>
+    <Router>
+      <div className={styles.main}>
+        <h1>My React App</h1>
+        {plantCatalog.length && createPlantCatalog()}
+      </div>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Router>
   )
 }
 
