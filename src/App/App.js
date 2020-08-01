@@ -7,6 +7,7 @@ import Header from '../Header/Header'
 import Quiz from '../Quiz/Quiz'
 import appReducer from '../Hooks/appReducer'
 import getColoradoNativePlants from '../Utils/ApiCalls'
+import randomAnswerCreator from '../Utils/answerRandomizer'
 
 function App() {
   const initialSate = {
@@ -23,7 +24,6 @@ function App() {
       try {
         const plantInfoRequests = await getColoradoNativePlants()
         dispatch({ type: 'getPlants', payload: plantInfoRequests })
-        dispatch({ type: 'setCurrentPlant' })
       } catch (err) {
         dispatch({ type: 'error', payload: { ...err } })
       }
