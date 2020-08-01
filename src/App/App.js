@@ -12,18 +12,23 @@ function App() {
   const initialSate = {
     plantCatalog: [],
     imageMode: false,
-    currentPlant: {}
+    currentQuiz: [],
+    round: 0,
+    scoreTracker: [],
+    quizScore: 0
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
-  const { plantCatalog, imageMode, currentPlant } = state
+  const {
+    plantCatalog, imageMode, currentQuiz, round, scoreTracker
+  } = state
 
   useEffect(() => {
     const getPlantInfo = async () => {
       try {
         const plantInfoRequests = await getColoradoNativePlants()
         dispatch({ type: 'getPlants', payload: plantInfoRequests })
-        dispatch({ type: 'setCurrentPlant' })
+        dispatch({ type: 'createQuiz' })
       } catch (err) {
         dispatch({ type: 'error', payload: { ...err } })
       }
@@ -32,7 +37,18 @@ function App() {
   }, [])
 
   function chooseQuizMode(mode) {
-    dispatch({ type: 'quizMode', payload: mode })
+    dispatch({ type: 'setQuizMode', payload: mode })
+  }
+
+  function checkRoundAnswer(event) {
+    const { id } = currentQuiz[round].correctAnswer
+    const buttonId = parseInt(event.target.id, 10)
+    const answerScore = (id === buttonId) ? 1 : 0
+    dispatch({ type: 'roundCheck', payload: answerScore })
+  }
+
+  function calculateScore(score) {
+    dispatch({ type: 'checkScore', payload: score })
   }
 
   return (
@@ -49,8 +65,12 @@ function App() {
               path="/quiz"
               render={() => (
                 <Quiz
-                  currentPlant={currentPlant}
+                  currentQuiz={currentQuiz}
                   mode={imageMode}
+                  round={round}
+                  checkRoundAnswer={checkRoundAnswer}
+                  scoreTracker={scoreTracker}
+                  calculateScore={calculateScore}
                 />
               )}
             />
