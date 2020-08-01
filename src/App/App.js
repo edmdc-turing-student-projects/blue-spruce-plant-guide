@@ -15,7 +15,8 @@ function App() {
     currentQuiz: [],
     round: 0,
     scoreTracker: [],
-    quizScore: 0
+    quizScore: 0,
+    username: ''
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
@@ -38,6 +39,14 @@ function App() {
 
   function chooseQuizMode(mode) {
     dispatch({ type: 'setQuizMode', payload: mode })
+  }
+
+  function handleChange(event, fieldName) {
+    dispatch({
+      type: 'handleChange',
+      fieldName,
+      payload: event.target.value
+    })
   }
 
   function checkRoundAnswer(event) {
@@ -77,7 +86,10 @@ function App() {
           </>
         )}
       <Route exact path="/">
-        <Home chooseQuizMode={chooseQuizMode} />
+        <Home
+          chooseQuizMode={chooseQuizMode}
+          handleChange={handleChange}
+        />
       </Route>
     </Router>
   )

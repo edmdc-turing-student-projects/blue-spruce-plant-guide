@@ -14,6 +14,12 @@ export default function appReducer(state, action) {
         imageMode: action.payload
       }
     }
+    case 'handleChange': {
+      return {
+        ...state,
+        [action.fieldName]: action.payload
+      }
+    }
     case 'createQuiz': {
       const currentQuiz = quizGenerator(state.plantCatalog)
       return {
