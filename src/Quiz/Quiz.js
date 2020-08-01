@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Quiz({
-  currentQuiz, mode, round, checkRoundAnswer
+  currentQuiz, mode, round, checkRoundAnswer, calculateScore, scoreTracker
 }) {
   const {
     correctAnswer: {
@@ -23,7 +23,7 @@ export default function Quiz({
       </h3>
     )
     const answerChoices = roundAnswers.map((answer) => (
-      <button type="button" onClick={(event) => checkRoundAnswer(event)}>
+      <button id={answer.id} type="button" onClick={(event) => checkRoundAnswer(event)}>
         {answer.common_name}
       </button>
     ))
@@ -36,9 +36,28 @@ export default function Quiz({
     )
   }
 
+  const displayQuizResults = () => {
+    const score = scoreTracker.reduce((totalScore, questionScore) => {
+      totalScore += questionScore
+      return totalScore
+    }, 0)
+
+    return (
+      <>
+        <h2>
+          {' '}
+          You got:
+          {score}
+          /10 correct
+        </h2>
+      </>
+    )
+  }
+
   return (
     <>
-      {round < 10 ? createQuizSlide() : null}
+      {round < 10 && createQuizSlide()}
+      {round === 10 && displayQuizResults()}
     </>
   )
 }

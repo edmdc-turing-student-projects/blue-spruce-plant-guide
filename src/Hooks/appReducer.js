@@ -8,13 +8,6 @@ export default function appReducer(state, action) {
         plantCatalog: [...action.payload]
       }
     }
-    case 'setCurrentPlant': {
-      const randomIndex = Math.floor(Math.random() * state.plantCatalog.length)
-      return {
-        ...state,
-        currentPlant: { ...state.plantCatalog[randomIndex] }
-      }
-    }
     case 'setQuizMode': {
       return {
         ...state,
@@ -31,8 +24,14 @@ export default function appReducer(state, action) {
     case 'roundCheck': {
       return {
         ...state,
-        score: [...state.score, action.payload],
+        scoreTracker: [...state.scoreTracker, action.payload],
         round: state.round + 1
+      }
+    }
+    case 'checkScore': {
+      return {
+        ...state,
+        quizScore: action.payload
       }
     }
     case 'error': {

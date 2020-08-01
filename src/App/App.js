@@ -14,12 +14,13 @@ function App() {
     imageMode: false,
     currentQuiz: [],
     round: 0,
-    score: []
+    scoreTracker: [],
+    quizScore: 0
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
   const {
-    plantCatalog, imageMode, currentQuiz, round
+    plantCatalog, imageMode, currentQuiz, round, scoreTracker
   } = state
 
   useEffect(() => {
@@ -40,9 +41,14 @@ function App() {
   }
 
   function checkRoundAnswer(event) {
-    const { id } = currentQuiz[round].correctAnswer.id
-    const answerScore = (id === event.target.id) ? 1 : 0
+    const { id } = currentQuiz[round].correctAnswer
+    const buttonId = parseInt(event.target.id, 10)
+    const answerScore = (id === buttonId) ? 1 : 0
     dispatch({ type: 'roundCheck', payload: answerScore })
+  }
+
+  function calculateScore(score) {
+    dispatch({ type: 'checkScore', payload: score })
   }
 
   return (
@@ -63,6 +69,8 @@ function App() {
                   mode={imageMode}
                   round={round}
                   checkRoundAnswer={checkRoundAnswer}
+                  scoreTracker={scoreTracker}
+                  calculateScore={calculateScore}
                 />
               )}
             />
