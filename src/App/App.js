@@ -12,11 +12,15 @@ function App() {
   const initialSate = {
     plantCatalog: [],
     imageMode: false,
-    currentQuiz: []
+    currentQuiz: [],
+    round: 0,
+    score: []
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
-  const { plantCatalog, imageMode, currentQuiz } = state
+  const {
+    plantCatalog, imageMode, currentQuiz, round
+  } = state
 
   useEffect(() => {
     const getPlantInfo = async () => {
@@ -35,6 +39,12 @@ function App() {
     dispatch({ type: 'setQuizMode', payload: mode })
   }
 
+  function checkRoundAnswer(event) {
+    const { id } = currentQuiz[round].correctAnswer.id
+    const answerScore = (id === event.target.id) ? 1 : 0
+    dispatch({ type: 'roundCheck', payload: answerScore })
+  }
+
   return (
     <Router>
       <Header />
@@ -51,6 +61,8 @@ function App() {
                 <Quiz
                   currentQuiz={currentQuiz}
                   mode={imageMode}
+                  round={round}
+                  checkRoundAnswer={checkRoundAnswer}
                 />
               )}
             />

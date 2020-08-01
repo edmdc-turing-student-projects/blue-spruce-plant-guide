@@ -28,6 +28,13 @@ export default function appReducer(state, action) {
         currentQuiz
       }
     }
+    case 'roundCheck': {
+      return {
+        ...state,
+        score: [...state.score, action.payload],
+        round: state.round + 1
+      }
+    }
     case 'error': {
       return {
         ...state,
