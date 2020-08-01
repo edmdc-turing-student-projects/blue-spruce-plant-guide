@@ -1,0 +1,13 @@
+
+.form {
+  border: 2px solid black;
+  background: url(../Assets/login_bg.jpg);
+  display: flex;
+  flex-flow: column;
+  width: 85%;
+}
+
+.username {
+  align-self: center;
+  background-color: black;
+}

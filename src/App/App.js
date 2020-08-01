@@ -61,37 +61,39 @@ function App() {
   }
 
   return (
-    <Router>
-      <Header />
-      {state.plantCatalog.length
+    <main styles={styles.main}>
+      <Router>
+        <Header />
+        {state.plantCatalog.length
         && (
-          <>
-            <Route
-              path="/plantIndex"
-              render={() => <PlantIndex plantCatalog={plantCatalog} />}
-            />
-            <Route
-              path="/quiz"
-              render={() => (
-                <Quiz
-                  currentQuiz={currentQuiz}
-                  mode={imageMode}
-                  round={round}
-                  checkRoundAnswer={checkRoundAnswer}
-                  scoreTracker={scoreTracker}
-                  calculateScore={calculateScore}
-                />
-              )}
-            />
-          </>
+        <>
+          <Route
+            path="/plantIndex"
+            render={() => <PlantIndex plantCatalog={plantCatalog} />}
+          />
+          <Route
+            path="/quiz"
+            render={() => (
+              <Quiz
+                currentQuiz={currentQuiz}
+                mode={imageMode}
+                round={round}
+                checkRoundAnswer={checkRoundAnswer}
+                scoreTracker={scoreTracker}
+                calculateScore={calculateScore}
+              />
+            )}
+          />
+        </>
         )}
-      <Route exact path="/">
-        <Home
-          chooseQuizMode={chooseQuizMode}
-          handleChange={handleChange}
-        />
-      </Route>
-    </Router>
+        <Route exact path="/">
+          <Home
+            chooseQuizMode={chooseQuizMode}
+            handleChange={handleChange}
+          />
+        </Route>
+      </Router>
+    </main>
   )
 }
 

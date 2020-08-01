@@ -1,11 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import styles from './Home.scss'
 
 export default function Home({ chooseQuizMode, handleChange }) {
   return (
-    <form>
+    <form className={styles.form}>
       <input
+        className={styles.username}
         type="text"
         placeholder="Enter your name:"
         onChange={
