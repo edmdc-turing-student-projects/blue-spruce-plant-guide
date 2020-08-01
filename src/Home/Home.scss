@@ -1,7 +1,8 @@
+@import '../App/App.scss';
 
 .form {
-  border: 2px solid black;
-  background: url(../Assets/login_bg.jpg);
+  border: 2px solid $deep-blue;
+  background-color: $pine-green;
   display: flex;
   flex-flow: column;
   width: 85%;
@@ -9,5 +10,5 @@
 
 .username {
   align-self: center;
-  background-color: black;
+  background-color: $field-green;
 }
