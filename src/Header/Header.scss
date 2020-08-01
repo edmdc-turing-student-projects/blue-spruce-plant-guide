@@ -1,0 +1,42 @@
+@import '../App/App.scss';
+
+.header {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 12vh;
+  margin-bottom: .5em;
+}
+
+.headerTitle {
+  letter-spacing: .08em;
+  font-size: 1.8em;
+  margin-bottom: .2em;
+  text-align: center;
+}
+
+.navBar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  a::visited {
+    color: $deep-blue;
+  }
+}
+
+.inactiveLink {
+  text-align: center;
+  border: 3px solid $pine-green;
+  background-color: $field-green;
+  color: $pine-green;
+  height: 1.5em;
+  text-decoration: none;
+  width: 8.9em;
+}
+
+.activeLink {
+  background-color: $pine-green;
+  color: $field-green;
+}
