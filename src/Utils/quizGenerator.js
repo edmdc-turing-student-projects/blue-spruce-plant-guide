@@ -17,19 +17,20 @@ function randomAnswerCreator(plantCatalog, i = 0, answerChoices = []) {
   return 'Oh no! Infinite loop warning!!'
 }
 
-export default function quizCreator(plantCatalog, round = 0, quizKey = []) {
+export default function quizGenerator(plantCatalog, round = 0, quizKey = []) {
   if (round === 10) {
     return quizKey
   }
 
   if (round < 10) {
-    const roundQuestions = randomAnswerCreator(plantCatalog)
-    const correctAnswer = roundQuestions[Math.floor(Math.random() * 4)]
-    const modifiedPlantCatalog = plantCatalog.filter((plant) => plant.id !== correctAnswer.id)
-    const newKey = [...quizKey, { roundQuestions, correctAnswer }]
-    return quizCreator(modifiedPlantCatalog, round + 1, newKey)
+    const roundAnswers = randomAnswerCreator(plantCatalog)
+    const correctAnswer = roundAnswers[Math.floor(Math.random() * 4)]
+    const modifiedPlantCatalog = plantCatalog.filter(
+      (plant) => plant.id !== correctAnswer.id
+    )
+    const newKey = [...quizKey, { roundAnswers, correctAnswer }]
+    return quizGenerator(modifiedPlantCatalog, round + 1, newKey)
   }
 
   return 'Break the infinite loop!'
 }
-

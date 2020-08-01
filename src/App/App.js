@@ -7,23 +7,23 @@ import Header from '../Header/Header'
 import Quiz from '../Quiz/Quiz'
 import appReducer from '../Hooks/appReducer'
 import getColoradoNativePlants from '../Utils/ApiCalls'
-import randomAnswerCreator from '../Utils/answerRandomizer'
 
 function App() {
   const initialSate = {
     plantCatalog: [],
     imageMode: false,
-    currentPlant: {}
+    currentQuiz: []
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
-  const { plantCatalog, imageMode, currentPlant } = state
+  const { plantCatalog, imageMode, currentQuiz } = state
 
   useEffect(() => {
     const getPlantInfo = async () => {
       try {
         const plantInfoRequests = await getColoradoNativePlants()
         dispatch({ type: 'getPlants', payload: plantInfoRequests })
+        dispatch({ type: 'createQuiz' })
       } catch (err) {
         dispatch({ type: 'error', payload: { ...err } })
       }
@@ -32,7 +32,7 @@ function App() {
   }, [])
 
   function chooseQuizMode(mode) {
-    dispatch({ type: 'quizMode', payload: mode })
+    dispatch({ type: 'setQuizMode', payload: mode })
   }
 
   return (
@@ -49,7 +49,7 @@ function App() {
               path="/quiz"
               render={() => (
                 <Quiz
-                  currentPlant={currentPlant}
+                  currentQuiz={currentQuiz}
                   mode={imageMode}
                 />
               )}
