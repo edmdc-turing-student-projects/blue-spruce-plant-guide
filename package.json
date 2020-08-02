@@ -39,6 +39,7 @@
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "2.x",
+    "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.1.0",
@@ -80,7 +81,7 @@
       ],
       "max-lines-per-function": [
         "error",
-        90
+        120
       ],
       "semi": [
         "error",

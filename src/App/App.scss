@@ -1,17 +1,21 @@
-$primary-color: cornflowerblue;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300&display=swap');
+
+$deep-blue: #1C3144;
+$field-gray: #596f62;
+$pine-green: #171E0B;
+$field-green: #7EA16B;
+$red-accent: #70161E;
+$brush-green: #577447;
+
+html {
+  background-color: $deep-blue;
+  font-family: 'Lato', sans-serif;
+}
 
 .main {
-	color: $primary-color;
+	color: $pine-green;
 	text-align: center;
   display: grid;
   grid-template-columns: repeat(3, minmax(80px, 245px))
 }
 
-.plantCard {
-  color: black;
-}
-
-.plantImage {
-  width: 12vw;
-  height: 15vh;
-}

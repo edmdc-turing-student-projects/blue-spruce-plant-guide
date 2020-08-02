@@ -1,0 +1,36 @@
+@import '../App/App.scss';
+
+.form {
+  position: absolute;
+  top: 25vh; left: 5vw;
+  border: 8px solid $field-gray;
+  background-color: $pine-green;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 34vh;
+  width: 85%;
+}
+
+.username {
+  align-self: center;
+  color: $pine-green;
+  background-color: $field-green;
+  margin-top: 3vh;
+  height: 1.5em;
+  width: 88%;
+  font-size: 1.3em;
+}
+
+.selectMenu,
+.quizStartButton {
+  align-self: center;
+  background-color: $field-green;
+  width: 88%;
+  height: 1.5em;
+  font-size: 1.3em;
+}
+
+.quizStartButton {
+  margin-left: 5vw;
+}
