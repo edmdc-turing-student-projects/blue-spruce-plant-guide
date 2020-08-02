@@ -5,23 +5,24 @@ import Home from '../Home/Home'
 import PlantIndex from '../PlantIndex/PlantIndex'
 import Header from '../Header/Header'
 import Quiz from '../Quiz/Quiz'
+import QuizResults from '../QuizResult/QuizResult'
 import appReducer from '../Hooks/appReducer'
 import getColoradoNativePlants from '../Utils/ApiCalls'
 
 function App() {
   const initialSate = {
     plantCatalog: [],
-    imageMode: true,
+    imageMode: false,
     currentQuiz: [],
     round: 0,
-    scoreTracker: [],
+    quizLength: 10,
     quizScore: 0,
     username: ''
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
   const {
-    plantCatalog, imageMode, currentQuiz, round, scoreTracker
+    plantCatalog, imageMode, currentQuiz, round, quizLength, username, quizScore
   } = state
 
   useEffect(() => {
@@ -37,8 +38,17 @@ function App() {
     getPlantInfo()
   }, [])
 
-  function chooseQuizMode(mode) {
-    dispatch({ type: 'setQuizMode', payload: mode })
+  function setQuizSettings(event) {
+    const form = event.target.closest('form')
+    const unstringifiedQuizMode = (form.quizMode.value === 'true')
+    console.log(form.username.value)
+    const payload = {
+      quizMode: unstringifiedQuizMode,
+      username: form.username.value
+    }
+    dispatch({
+      type: 'setQuizSettings', payload
+    })
   }
 
   function handleChange(event, fieldName) {
@@ -56,10 +66,6 @@ function App() {
     dispatch({ type: 'roundCheck', payload: answerScore })
   }
 
-  function calculateScore(score) {
-    dispatch({ type: 'checkScore', payload: score })
-  }
-
   return (
     <main styles={styles.main}>
       <Router>
@@ -71,7 +77,7 @@ function App() {
             path="/plantIndex"
             render={() => <PlantIndex plantCatalog={plantCatalog} />}
           />
-            {(!currentQuiz.length) ? <Redirect to="/" />
+            {(!currentQuiz) ? <Redirect to="/" />
               : (
                 <Route
                   path="/quiz"
@@ -81,17 +87,27 @@ function App() {
                       mode={imageMode}
                       round={round}
                       checkRoundAnswer={checkRoundAnswer}
-                      scoreTracker={scoreTracker}
-                      calculateScore={calculateScore}
+                      quizLength={quizLength}
                     />
                   )}
                 />
               )}
+            {(round === quizLength) && (
+            <Route
+              path="/results"
+              render={() => (
+                <QuizResults
+                  username={username}
+                  score={quizScore}
+                />
+              )}
+            />
+            )}
         </>
         )}
         <Route exact path="/">
           <Home
-            chooseQuizMode={chooseQuizMode}
+            setQuizSettings={setQuizSettings}
             handleChange={handleChange}
           />
         </Route>

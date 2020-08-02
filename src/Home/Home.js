@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styles from './Home.scss'
 
-export default function Home({ chooseQuizMode, handleChange }) {
+export default function Home({ setQuizSettings, handleChange }) {
   return (
     <form
       className={styles.form}
@@ -11,7 +11,8 @@ export default function Home({ chooseQuizMode, handleChange }) {
       <input
         className={styles.username}
         type="text"
-        placeholder="Enter your name:"
+        id="username"
+        placeholder="Introduce yourself:"
         onChange={
           (event) => handleChange(event, 'username')
         }
@@ -21,32 +22,16 @@ export default function Home({ chooseQuizMode, handleChange }) {
         id="quizMode"
         name="quizMode"
         className={styles.selectMenu}
+        placeholder="Quiz by..."
       >
-        <option selected>Quiz Mode</option>
         <option value>Images</option>
         <option value={false}>Scientific Name</option>
       </select>
-      {/* <NavLink to="/quiz"> */}
-      {/*   <button */}
-      {/*     type="button" */}
-      {/*     onClick={() => chooseQuizMode(true)} */}
-      {/*   > */}
-      {/*     Images */}
-      {/*   </button> */}
-      {/* </NavLink> */}
-      {/* <NavLink to="/quiz"> */}
-      {/*   <button */}
-      {/*     type="button" */}
-      {/*     onClick={() => chooseQuizMode(false)} */}
-      {/*   > */}
-      {/*     Scientific Name */}
-      {/*   </button> */}
-      {/* </NavLink> */}
-      <NavLink to="./quiz">
+      <NavLink to="/quiz">
         <button
           type="submit"
           className={styles.quizStartButton}
-          onClick={(event) => console.log(typeof event.target.closest('form').quizMode.value)}
+          onClick={(event) => setQuizSettings(event)}
         >
           Start Quiz
         </button>
@@ -56,6 +41,6 @@ export default function Home({ chooseQuizMode, handleChange }) {
 }
 
 Home.propTypes = {
-  chooseQuizMode: PropTypes.func.isRequired,
+  setQuizSettings: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired
 }
