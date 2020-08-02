@@ -5,6 +5,7 @@ $field-gray: #596f62;
 $pine-green: #171E0B;
 $field-green: #7EA16B;
 $red-accent: #70161E;
+$brush-green: #577447;
 
 html {
   background-color: $deep-blue;
@@ -18,11 +19,3 @@ html {
   grid-template-columns: repeat(3, minmax(80px, 245px))
 }
 
-.plantCard {
-  color: black;
-}
-
-.plantImage {
-  width: 12vw;
-  height: 15vh;
-}

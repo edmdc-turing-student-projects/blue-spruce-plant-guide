@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import styles from './App.scss'
 import Home from '../Home/Home'
 import PlantIndex from '../PlantIndex/PlantIndex'
@@ -71,19 +71,22 @@ function App() {
             path="/plantIndex"
             render={() => <PlantIndex plantCatalog={plantCatalog} />}
           />
-          <Route
-            path="/quiz"
-            render={() => (
-              <Quiz
-                currentQuiz={currentQuiz}
-                mode={imageMode}
-                round={round}
-                checkRoundAnswer={checkRoundAnswer}
-                scoreTracker={scoreTracker}
-                calculateScore={calculateScore}
-              />
-            )}
-          />
+            {(!currentQuiz.length) ? <Redirect to="/" />
+              : (
+                <Route
+                  path="/quiz"
+                  render={() => (
+                    <Quiz
+                      currentQuiz={currentQuiz}
+                      mode={imageMode}
+                      round={round}
+                      checkRoundAnswer={checkRoundAnswer}
+                      scoreTracker={scoreTracker}
+                      calculateScore={calculateScore}
+                    />
+                  )}
+                />
+              )}
         </>
         )}
         <Route exact path="/">

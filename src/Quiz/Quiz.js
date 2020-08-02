@@ -1,4 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
+import styles from './Quiz.scss'
 
 export default function Quiz({
   currentQuiz, mode, round, checkRoundAnswer, calculateScore, scoreTracker
@@ -13,18 +16,28 @@ export default function Quiz({
   const createQuizSlide = () => {
     const quizPrompt = (mode) ? (
       <img
+        className={styles.promptImage}
         src={`${image_url}`}
         alt={`${scientific_name}`}
         id={id}
       />
     ) : (
-      <h3 title={`${scientific_name}`} id={id}>
+      <h3
+        title={`${scientific_name}`}
+        className={styles.promptScienceName}
+        id={id}
+      >
         {`${scientific_name}`}
       </h3>
     )
     const answerChoices = roundAnswers.map((answer) => (
-      <button id={answer.id} type="button" onClick={(event) => checkRoundAnswer(event)}>
-        {answer.common_name}
+      <button
+        id={answer.id}
+        type="button"
+        className={styles.answerChoice}
+        onClick={(event) => checkRoundAnswer(event)}
+      >
+        {answer.common_name ? answer.common_name : answer.scientific_name}
       </button>
     ))
 
@@ -57,7 +70,15 @@ export default function Quiz({
   return (
     <>
       {round < 10 && createQuizSlide()}
-      {round === 10 && displayQuizResults()}
     </>
   )
+}
+
+Quiz.propTypes = {
+  currentQuiz: PropTypes.array.isRequired,
+  mode: PropTypes.bool.isRequired,
+  round: PropTypes.number.isRequired,
+  checkRoundAnswer: PropTypes.func.isRequired,
+  calculateScore: PropTypes.func.isRequired,
+  scoreTracker: PropTypes.array.isRequired
 }
