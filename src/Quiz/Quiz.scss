@@ -1,10 +1,56 @@
 @import '../App/App.scss';
 
+.quizPage {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2.1em;
+}
+
+.quizSlide {
+  height: 75vh;
+  width: 89vw;
+  background: $pine-green;
+  }
+
+.promptImage,
+.promptScienceName {
+  height: 45vh;
+  width: 89%;
+  margin-left: 5vw;
+  width: 89%;
+}
+
 .promptImage {
-  height: 55vh;
-  width: 34vw;
+  margin-top: 1.3em;
 }
 
 .promptScienceName {
-  background-color: $field-gray;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  font-size: 2.1em;
+  letter-spacing: .2em;
+  text-align: center;
+  margin-top: .5em;
+}
+
+.answerChoices {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  margin-top: 1.3em;
+
+}
+
+.answerChoice {
+  background: linear-gradient(45deg, $brush-green, $field-gray);
+  font-size: 1.3em;
+  color: $pine-green;
+  height: 8vh;
+  width: 38vw;
+  margin: .3em;
 }
