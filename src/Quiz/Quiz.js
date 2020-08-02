@@ -1,4 +1,5 @@
 import React from 'react'
+import Redirect from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styles from './Quiz.scss'
 
@@ -74,6 +75,7 @@ export default function Quiz({
   return (
     <section className={styles.quizPage}>
       {round < 10 && createQuizSlide()}
+      {round === 10 && <Redirect to="/quizResults" />}
     </section>
   )
 }

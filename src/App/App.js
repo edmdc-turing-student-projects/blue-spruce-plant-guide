@@ -5,13 +5,14 @@ import Home from '../Home/Home'
 import PlantIndex from '../PlantIndex/PlantIndex'
 import Header from '../Header/Header'
 import Quiz from '../Quiz/Quiz'
+import QuizResults from '../QuizResult/QuizResult'
 import appReducer from '../Hooks/appReducer'
 import getColoradoNativePlants from '../Utils/ApiCalls'
 
 function App() {
   const initialSate = {
     plantCatalog: [],
-    imageMode: true,
+    imageMode: false,
     currentQuiz: [],
     round: 0,
     scoreTracker: [],
@@ -71,7 +72,7 @@ function App() {
             path="/plantIndex"
             render={() => <PlantIndex plantCatalog={plantCatalog} />}
           />
-            {(!currentQuiz.length) ? <Redirect to="/" />
+            {(!currentQuiz) ? <Redirect to="/" />
               : (
                 <Route
                   path="/quiz"
@@ -89,6 +90,12 @@ function App() {
               )}
         </>
         )}
+        <Route
+          path="/quizResults"
+          render={() => (
+            <QuizResults />
+          )}
+        />
         <Route exact path="/">
           <Home
             chooseQuizMode={chooseQuizMode}
