@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Redirect } from 'react-router-dom'
 import styles from './Quiz.scss'
 
 export default function Quiz({
@@ -22,13 +21,16 @@ export default function Quiz({
         id={id}
       />
     ) : (
-      <h3
-        title={`${scientific_name}`}
+      <article
         className={styles.promptScienceName}
-        id={id}
       >
-        {`${scientific_name}`}
-      </h3>
+        <h3
+          title={`${scientific_name}`}
+          id={id}
+        >
+          {`${scientific_name}`}
+        </h3>
+      </article>
     )
     const answerChoices = roundAnswers.map((answer) => (
       <button
@@ -42,10 +44,12 @@ export default function Quiz({
     ))
 
     return (
-      <>
+      <article className={styles.quizSlide}>
         {quizPrompt}
-        {answerChoices}
-      </>
+        <div className={styles.answerChoices}>
+          {answerChoices}
+        </div>
+      </article>
     )
   }
 
@@ -68,9 +72,9 @@ export default function Quiz({
   }
 
   return (
-    <>
+    <section className={styles.quizPage}>
       {round < 10 && createQuizSlide()}
-    </>
+    </section>
   )
 }
 

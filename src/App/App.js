@@ -11,7 +11,7 @@ import getColoradoNativePlants from '../Utils/ApiCalls'
 function App() {
   const initialSate = {
     plantCatalog: [],
-    imageMode: false,
+    imageMode: true,
     currentQuiz: [],
     round: 0,
     scoreTracker: [],
