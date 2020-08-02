@@ -1,17 +1,18 @@
 import React from 'react'
-import Redirect from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import QuizResults from '../QuizResult/QuizResult'
 import styles from './Quiz.scss'
 
 export default function Quiz({
-  currentQuiz, mode, round, checkRoundAnswer, calculateScore, scoreTracker
+  currentQuiz, mode, round, checkRoundAnswer, quizLength, calculateScore
 }) {
   const {
     correctAnswer: {
       image_url, scientific_name, id
     },
     roundAnswers
-  } = currentQuiz[round]
+  } = (currentQuiz[round]) ? currentQuiz[round] : currentQuiz[round - 1]
 
   const createQuizSlide = () => {
     const quizPrompt = (mode) ? (
@@ -54,28 +55,25 @@ export default function Quiz({
     )
   }
 
-  const displayQuizResults = () => {
-    const score = scoreTracker.reduce((totalScore, questionScore) => {
-      totalScore += questionScore
-      return totalScore
-    }, 0)
-
-    return (
+  const createQuizResult = () => (
+    <section className="none">
+      <h3>Can&apost tell you just yet</h3>
       <>
         <h2>
-          {' '}
           You got:
-          {score}
+          {calculateScore()}
           /10 correct
         </h2>
       </>
-    )
-  }
+    </section>
+  )
 
   return (
     <section className={styles.quizPage}>
-      {round < 10 && createQuizSlide()}
-      {round === 10 && <Redirect to="/quizResults" />}
+      {(round < quizLength) && createQuizSlide()}
+      {round === quizLength
+          && (<Redirect to="/results" />
+          )}
     </section>
   )
 }
@@ -85,6 +83,6 @@ Quiz.propTypes = {
   mode: PropTypes.bool.isRequired,
   round: PropTypes.number.isRequired,
   checkRoundAnswer: PropTypes.func.isRequired,
-  calculateScore: PropTypes.func.isRequired,
-  scoreTracker: PropTypes.array.isRequired
+  quizLength: PropTypes.number.isRequired,
+  calculateScore: PropTypes.func.isRequired
 }

@@ -8,10 +8,12 @@ export default function appReducer(state, action) {
         plantCatalog: [...action.payload]
       }
     }
-    case 'setQuizMode': {
+    case 'setQuizSettings': {
+      const { quizMode, username } = action.payload
       return {
         ...state,
-        imageMode: action.payload
+        imageMode: quizMode,
+        username
       }
     }
     case 'handleChange': {
@@ -30,14 +32,8 @@ export default function appReducer(state, action) {
     case 'roundCheck': {
       return {
         ...state,
-        scoreTracker: [...state.scoreTracker, action.payload],
+        quizScore: state.quizScore + action.payload,
         round: state.round + 1
-      }
-    }
-    case 'checkScore': {
-      return {
-        ...state,
-        quizScore: action.payload
       }
     }
     case 'error': {

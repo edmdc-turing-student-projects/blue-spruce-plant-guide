@@ -15,14 +15,14 @@ function App() {
     imageMode: false,
     currentQuiz: [],
     round: 0,
-    scoreTracker: [],
+    quizLength: 10,
     quizScore: 0,
     username: ''
   }
 
   const [state, dispatch] = useReducer(appReducer, initialSate)
   const {
-    plantCatalog, imageMode, currentQuiz, round, scoreTracker
+    plantCatalog, imageMode, currentQuiz, round, quizLength, username, quizScore
   } = state
 
   useEffect(() => {
@@ -38,8 +38,17 @@ function App() {
     getPlantInfo()
   }, [])
 
-  function chooseQuizMode(mode) {
-    dispatch({ type: 'setQuizMode', payload: mode })
+  function setQuizSettings(event) {
+    const form = event.target.closest('form')
+    const unstringifiedQuizMode = (form.quizMode.value === 'true')
+    console.log(form.username.value)
+    const payload = {
+      quizMode: unstringifiedQuizMode,
+      username: form.username.value
+    }
+    dispatch({
+      type: 'setQuizSettings', payload
+    })
   }
 
   function handleChange(event, fieldName) {
@@ -55,10 +64,6 @@ function App() {
     const buttonId = parseInt(event.target.id, 10)
     const answerScore = (id === buttonId) ? 1 : 0
     dispatch({ type: 'roundCheck', payload: answerScore })
-  }
-
-  function calculateScore(score) {
-    dispatch({ type: 'checkScore', payload: score })
   }
 
   return (
@@ -82,23 +87,27 @@ function App() {
                       mode={imageMode}
                       round={round}
                       checkRoundAnswer={checkRoundAnswer}
-                      scoreTracker={scoreTracker}
-                      calculateScore={calculateScore}
+                      quizLength={quizLength}
                     />
                   )}
                 />
               )}
+            {(round === quizLength) && (
+            <Route
+              path="/results"
+              render={() => (
+                <QuizResults
+                  username={username}
+                  score={quizScore}
+                />
+              )}
+            />
+            )}
         </>
         )}
-        <Route
-          path="/quizResults"
-          render={() => (
-            <QuizResults />
-          )}
-        />
         <Route exact path="/">
           <Home
-            chooseQuizMode={chooseQuizMode}
+            setQuizSettings={setQuizSettings}
             handleChange={handleChange}
           />
         </Route>
