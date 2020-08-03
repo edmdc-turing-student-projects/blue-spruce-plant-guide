@@ -88,6 +88,7 @@ function App() {
                       round={round}
                       checkRoundAnswer={checkRoundAnswer}
                       quizLength={quizLength}
+                      quizScore={quizScore}
                     />
                   )}
                 />
