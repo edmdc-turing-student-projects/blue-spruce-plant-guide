@@ -1,6 +1,6 @@
 import React from 'react'
 import { MemoryRouter as Router } from 'react-router-dom'
-import { render } from '@testing-library/react'
+import { render, fireEvent, rerender } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Quiz from './Quiz'
 import mockQuiz from '../Utils/mockQuizData'
@@ -14,8 +14,8 @@ describe('Quiz slide modes', () => {
           mode
           round={0}
           checkRoundAnswer={jest.fn()}
-          quizLength={5}
-          calculateScore={jest.fn()}
+          quizLength={10}
+          quizScore={0}
         />
       </Router>
     )
@@ -35,8 +35,8 @@ describe('Quiz slide modes', () => {
           mode={false}
           round={0}
           checkRoundAnswer={jest.fn()}
-          quizLength={5}
-          calculateScore={jest.fn()}
+          quizLength={10}
+          quizScore={0}
         />
       </Router>
     )
@@ -46,5 +46,38 @@ describe('Quiz slide modes', () => {
 
     expect(quizPromptHeading).toBeInTheDocument()
     expect(answerChoiceButtons).toHaveLength(4)
+  })
+})
+
+describe('user flow through quiz', () => {
+  const quizPage = (
+    <Router>
+      <Quiz
+        currentQuiz={mockQuiz}
+        mode
+        round={0}
+        checkRoundAnswer={jest.fn()}
+        quizLength={10}
+        quizScore={0}
+      />
+    </Router>
+  )
+
+  it('should have ten rounds and keep score', async () => {
+    const {
+      getByRole, getByText, findByRole, findByText, debug
+    } = render(quizPage)
+    const roundImage = getByRole('img', { name: 'Parnassia palustris' })
+    const roundAnswer = getByRole('button', { name: 'marsh grass of Parnassus' })
+    let scoreTracker = getByText('0 of 10')
+
+    expect(scoreTracker).toBeInTheDocument()
+    expect(roundImage).toBeInTheDocument()
+    expect(roundAnswer).toBeInTheDocument()
+
+    fireEvent.click(roundAnswer)
+    debug()
+    scoreTracker = await findByText('1 of 10')
+    expect(scoreTracker).toBeInTheDocument()
   })
 })

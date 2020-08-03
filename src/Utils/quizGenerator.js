@@ -14,7 +14,7 @@ function randomAnswerCreator(plantCatalog, i = 0, answerChoices = []) {
     return randomAnswerCreator(plantCatalog, i + 1, newAnswerChoices)
   }
 
-  return 'Oh no! Infinite loop warning!!'
+  return 'ESlint low-key hating on recursion...'
 }
 
 export default function quizGenerator(plantCatalog, round = 0, quizKey = []) {
@@ -32,5 +32,5 @@ export default function quizGenerator(plantCatalog, round = 0, quizKey = []) {
     return quizGenerator(modifiedPlantCatalog, round + 1, newKey)
   }
 
-  return 'Break the infinite loop!'
+  return '...for good reason: Testing recursion is difficult.'
 }

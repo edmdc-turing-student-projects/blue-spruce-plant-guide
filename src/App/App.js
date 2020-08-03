@@ -124,6 +124,7 @@ function App() {
           <Home
             setQuizSettings={setQuizSettings}
             handleChange={handleChange}
+            username={username}
           />
         </Route>
       </Router>

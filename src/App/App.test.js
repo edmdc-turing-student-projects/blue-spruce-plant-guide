@@ -8,9 +8,9 @@ import { getColoradoNativePlants, quizGenerator } from '../Utils/index'
 import mockPlantIndex from '../Utils/mockPlantIndex'
 import mockQuizData from '../Utils/mockQuizData'
 
-jest.mock('../Utils/index')
+jest.mock('../Utils/ApiCalls')
+jest.mock('../Utils/quizGenerator')
 // quizGenerator.mockImplementation(mockQuizData)
-// quizGenerator.mockImplementation(() => mockQuizData)
 
 describe('App navigation from landing page', () => {
   getColoradoNativePlants.mockResolvedValue(mockPlantIndex)
@@ -24,15 +24,16 @@ describe('App navigation from landing page', () => {
 
     expect(link2PlantIndex).toBeInTheDocument()
     fireEvent.click(link2PlantIndex)
-    debug()
-    console.log(getColoradoNativePlants)
-    console.log([...mockPlantIndex])
 
     const plantGuide = await findAllByRole('figure')
     expect(plantGuide).toHaveLength(20)
   })
+})
 
+describe('App navigation to quiz', () => {
+  quizGenerator.mockReturnValue(mockQuizData)
   it('should navigate to quiz and default to scientific name quiz mode', async () => {
+    console.log(quizGenerator.mock.results[0].value[0])
     const {
       getByRole, findByRole, findAllByRole, debug
     } = render(
@@ -40,10 +41,12 @@ describe('App navigation from landing page', () => {
         <App />
       </Router>
     )
+
     const link2Quiz = getByRole('link', { name: 'Quiz' })
 
     expect(link2Quiz).toBeInTheDocument()
     fireEvent.click(link2Quiz)
+    debug()
 
     const quizPrompt = await findByRole('heading', { name: 'Parnassia palustris' })
     const quizAnswerChoices = await findAllByRole('button')
