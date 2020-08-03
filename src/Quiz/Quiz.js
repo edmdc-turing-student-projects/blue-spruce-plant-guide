@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styles from './Quiz.scss'
 
 export default function Quiz({
-  currentQuiz, mode, round, checkRoundAnswer, quizLength, quizScore
+  currentQuiz,
+  mode,
+  round,
+  checkRoundAnswer,
+  quizLength,
+  quizScore
 }) {
   const {
     correctAnswer: {
@@ -77,5 +82,7 @@ Quiz.propTypes = {
   round: PropTypes.number.isRequired,
   checkRoundAnswer: PropTypes.func.isRequired,
   quizLength: PropTypes.number.isRequired,
-  quizScore: PropTypes.number.isRequired
+  quizScore: PropTypes.number.isRequired,
+  toggleLoading: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 }

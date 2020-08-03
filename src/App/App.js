@@ -9,20 +9,28 @@ import QuizResults from '../QuizResult/QuizResult'
 import appReducer from '../Hooks/appReducer'
 import getColoradoNativePlants from '../Utils/ApiCalls'
 
-function App() {
-  const initialSate = {
-    plantCatalog: [],
-    imageMode: false,
-    currentQuiz: [],
-    round: 0,
-    quizLength: 10,
-    quizScore: 0,
-    username: ''
-  }
+const initialSate = {
+  plantCatalog: [],
+  imageMode: false,
+  isLoading: false,
+  currentQuiz: [],
+  round: 0,
+  quizLength: 10,
+  quizScore: 0,
+  username: ''
+}
 
+function App() {
   const [state, dispatch] = useReducer(appReducer, initialSate)
   const {
-    plantCatalog, imageMode, currentQuiz, round, quizLength, username, quizScore
+    plantCatalog,
+    imageMode,
+    currentQuiz,
+    round,
+    quizLength,
+    username,
+    quizScore,
+    isLoading
   } = state
 
   useEffect(() => {
@@ -41,7 +49,6 @@ function App() {
   function setQuizSettings(event) {
     const form = event.target.closest('form')
     const unstringifiedQuizMode = (form.quizMode.value === 'true')
-    console.log(form.username.value)
     const payload = {
       quizMode: unstringifiedQuizMode,
       username: form.username.value
@@ -63,7 +70,12 @@ function App() {
     const { id } = currentQuiz[round].correctAnswer
     const buttonId = parseInt(event.target.id, 10)
     const answerScore = (id === buttonId) ? 1 : 0
+    dispatch({ type: 'isLoading', payload: true })
     dispatch({ type: 'roundCheck', payload: answerScore })
+  }
+
+  function toggleLoading() {
+    dispatch({ type: 'isLoading', payload: !state.isLoading })
   }
 
   return (
@@ -89,6 +101,8 @@ function App() {
                       checkRoundAnswer={checkRoundAnswer}
                       quizLength={quizLength}
                       quizScore={quizScore}
+                      isLoading={isLoading}
+                      toggleLoading={toggleLoading}
                     />
                   )}
                 />

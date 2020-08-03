@@ -3,7 +3,7 @@ import { MemoryRouter as Router } from 'react-router-dom'
 import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Quiz from './Quiz'
-import mockQuiz from './mockQuizData'
+import mockQuiz from '../Utils/mockQuizData'
 
 describe('Quiz slide modes', () => {
   it('should display an image and four answer choices when image mode is on', () => {
