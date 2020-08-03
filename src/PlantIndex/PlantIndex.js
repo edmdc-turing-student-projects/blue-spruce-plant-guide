@@ -15,7 +15,7 @@ export default function PlantIndex({ plantCatalog }) {
           alt={`${common_name}`}
         />
         <figcaption>
-          <p><b>{`${common_name}`}</b></p>
+          <h4><b>{`${common_name}`}</b></h4>
           <p><i>{`${scientific_name}`}</i></p>
         </figcaption>
       </figure>
