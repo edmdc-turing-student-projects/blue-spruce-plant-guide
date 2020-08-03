@@ -37,6 +37,7 @@ export default function Quiz({
     const answerChoices = roundAnswers.map((answer) => (
       <button
         id={answer.id}
+        key={answer.id}
         type="button"
         className={styles.answerChoice}
         onClick={(event) => checkRoundAnswer(event)}

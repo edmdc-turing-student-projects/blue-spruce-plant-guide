@@ -5,13 +5,11 @@ export default function QuizResults({ username, score }) {
   return (
     <section className="none">
       <h3>{username}</h3>
-      <>
-        <h2>
-          You got:
-          {score}
-          /10 correct
-        </h2>
-      </>
+      <h2 title="score">
+        You got:
+        {score}
+        /10 correct
+      </h2>
     </section>
   )
 }

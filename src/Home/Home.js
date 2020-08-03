@@ -20,7 +20,7 @@ export default function Home({ setQuizSettings, handleChange }) {
       <select
         required
         id="quizMode"
-        name="quizMode"
+        title="quizMode"
         className={styles.selectMenu}
         placeholder="Quiz by..."
       >
