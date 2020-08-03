@@ -5,8 +5,10 @@ import styles from './Home.scss'
 
 export default function Home({ setQuizSettings, handleChange, username }) {
   return (
-    <>
-      <h2>{`Welcome, ${username}!`}</h2>
+    <section className={styles.welcomePage}>
+      <article className={styles.welcomeBanner}>
+        <h2>{`Welcome ${username}!!`}</h2>
+      </article>
       <form
         className={styles.form}
       >
@@ -39,11 +41,12 @@ export default function Home({ setQuizSettings, handleChange, username }) {
           </button>
         </NavLink>
       </form>
-    </>
+    </section>
   )
 }
 
 Home.propTypes = {
   setQuizSettings: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired
 }

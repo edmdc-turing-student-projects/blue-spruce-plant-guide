@@ -1,5 +1,12 @@
 @import '../App/App.scss';
 
+.welcomePage {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .form {
   position: absolute;
   top: 25vh; left: 5vw;
