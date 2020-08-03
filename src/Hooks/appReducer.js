@@ -36,6 +36,12 @@ export default function appReducer(state, action) {
         round: state.round + 1
       }
     }
+    case 'isLoading': {
+      return {
+        ...state,
+        isLoading: action.payload
+      }
+    }
     case 'error': {
       return {
         ...state,

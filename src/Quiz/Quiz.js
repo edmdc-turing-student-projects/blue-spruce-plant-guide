@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import QuizResults from '../QuizResult/QuizResult'
 import styles from './Quiz.scss'
 
 export default function Quiz({
-  currentQuiz, mode, round, checkRoundAnswer, quizLength, calculateScore
+  currentQuiz,
+  mode,
+  round,
+  checkRoundAnswer,
+  quizLength,
+  quizScore
 }) {
   const {
     correctAnswer: {
@@ -47,34 +51,27 @@ export default function Quiz({
     ))
 
     return (
-      <article className={styles.quizSlide}>
-        {quizPrompt}
-        <div className={styles.answerChoices}>
-          {answerChoices}
-        </div>
-      </article>
+      <>
+        <article className={styles.quizSlide}>
+          {quizPrompt}
+          <div className={styles.answerChoices}>
+            {answerChoices}
+          </div>
+        </article>
+        <article className={styles.userScore}>
+          <p>
+            <b>Your score:</b>
+            {`${quizScore} of ${quizLength}`}
+          </p>
+        </article>
+      </>
     )
   }
-
-  const createQuizResult = () => (
-    <section className="none">
-      <h3>Can&apost tell you just yet</h3>
-      <>
-        <h2>
-          You got:
-          {calculateScore()}
-          /10 correct
-        </h2>
-      </>
-    </section>
-  )
 
   return (
     <section className={styles.quizPage}>
       {(round < quizLength) && createQuizSlide()}
-      {round === quizLength
-          && (<Redirect to="/results" />
-          )}
+      {round === quizLength && <Redirect to="/results" />}
     </section>
   )
 }
@@ -85,5 +82,7 @@ Quiz.propTypes = {
   round: PropTypes.number.isRequired,
   checkRoundAnswer: PropTypes.func.isRequired,
   quizLength: PropTypes.number.isRequired,
-  calculateScore: PropTypes.func.isRequired
+  quizScore: PropTypes.number.isRequired,
+  toggleLoading: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 }
