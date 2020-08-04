@@ -1,0 +1,13 @@
+@import '../App/App.scss';
+
+.quizResults {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  background: $pine-green;
+  color: $field-gray;
+  text-align: center;
+  margin-top: 1.3em;
+  width: 89%;
+}

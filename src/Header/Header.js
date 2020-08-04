@@ -14,14 +14,14 @@ export default function Header() {
       </NavLink>
       <nav className={styles.navBar}>
         <NavLink
-          className={styles.link}
+          className={styles.leftLink}
           activeClassName={styles.activeLink}
           to="/plantIndex"
         >
           Plant Index
         </NavLink>
         <NavLink
-          className={styles.link}
+          className={styles.rightLink}
           activeClassName={styles.activeLink}
           to="/quiz"
         >

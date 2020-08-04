@@ -37,17 +37,26 @@
   }
 }
 
-.link {
+.leftLink,
+.rightLink {
   text-align: center;
   border: 5px solid $pine-green;
-  background-color: $field-green;
   color: $pine-green;
   height: 1.5em;
   text-decoration: none;
   width: 8.9em;
 }
 
+.leftLink {
+  background: $fade-in-gradient;
+}
+
+.rightLink {
+  background: $fade-out-gradient;
+}
+
 .activeLink {
-  background-color: $pine-green;
+  background: $pine-green;
   color: $field-green;
 }
+
