@@ -9,6 +9,7 @@ export default function QuizResults({ username, score, startNewRound }) {
       <h3>{username}</h3>
       <h2 title="score">
         You got:
+        {' '}
         {score}
         {' '}
         of 10 correct
@@ -16,6 +17,7 @@ export default function QuizResults({ username, score, startNewRound }) {
       <NavLink to="/quiz">
         <button
           type="submit"
+          className={styles.quizReset}
           onClick={() => startNewRound()}
         >
           Start Another Quiz
@@ -27,5 +29,6 @@ export default function QuizResults({ username, score, startNewRound }) {
 
 QuizResults.propTypes = {
   username: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired
+  score: PropTypes.number.isRequired,
+  startNewRound: PropTypes.func.isRequired
 }
