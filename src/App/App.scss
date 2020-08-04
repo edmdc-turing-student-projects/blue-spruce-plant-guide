@@ -6,10 +6,13 @@ $pine-green: #171E0B;
 $field-green: #7EA16B;
 $red-accent: #70161E;
 $brush-green: #577447;
+$fade-out-gradient: linear-gradient(45deg, $field-green 60%, $field-gray);
+$fade-in-gradient: linear-gradient(45deg, $field-gray, $field-green 60%);
 
 html {
   background-color: $deep-blue;
   font-family: 'Lato', sans-serif;
+  overflow: hidden;
 }
 
 .main {

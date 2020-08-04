@@ -9,14 +9,14 @@
 }
 
 .quizSlide {
-  height: 75vh;
+  height: 63vh;
   width: 89vw;
   background: $pine-green;
   }
 
 .promptImage,
 .promptScienceName {
-  height: 45vh;
+  height: 38vh;
   width: 89%;
   margin-left: 5vw;
   width: 89%;
@@ -27,12 +27,14 @@
 }
 
 .promptScienceName {
+  background: $field-green;
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
   font-size: 2.1em;
   letter-spacing: .2em;
   text-align: center;
+  text-shadow: 2px $field-gray;
   margin-top: .5em;
 }
 
@@ -48,9 +50,23 @@
 
 .answerChoice {
   background: linear-gradient(45deg, $brush-green, $field-gray);
-  font-size: 1.3em;
+  font-size: 1.1em;
   color: $pine-green;
-  height: 8vh;
+  height: 7vh;
   width: 38vw;
   margin: .3em;
+}
+
+.userScore {
+  height: 5vh;
+  width: 89%;
+  font-size: 1.3em;
+  text-align: center;
+  background: $fade-in-gradient;
+  margin-top: .5em;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 }

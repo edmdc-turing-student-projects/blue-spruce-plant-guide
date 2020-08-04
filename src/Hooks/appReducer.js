@@ -36,10 +36,13 @@ export default function appReducer(state, action) {
         round: state.round + 1
       }
     }
-    case 'isLoading': {
+    case 'resetQuiz': {
+      const newQuiz = quizGenerator(state.plantCatalog)
       return {
         ...state,
-        isLoading: action.payload
+        quizScore: 0,
+        round: 0,
+        currentQuiz: newQuiz
       }
     }
     case 'error': {

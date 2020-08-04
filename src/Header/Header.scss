@@ -3,40 +3,60 @@
 .header {
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 12vh;
+  height: 21vh;
   margin-bottom: .5em;
 }
 
-.headerTitle {
+.headerLink,
+.activeHeader {
+  color: $field-green;
+  text-decoration: none;
   letter-spacing: .08em;
-  font-size: 1.8em;
-  margin-bottom: .2em;
+  font-size: 1.3em;
+  margin-top: .8em;
+  margin-bottom: .1em;
   text-align: center;
+  height: 2.3em;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .navBar {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  border: 3px solid $field-gray;
 
   a::visited {
     color: $deep-blue;
   }
 }
 
-.inactiveLink {
+.leftLink,
+.rightLink {
   text-align: center;
-  border: 3px solid $pine-green;
-  background-color: $field-green;
+  border: 5px solid $pine-green;
   color: $pine-green;
   height: 1.5em;
   text-decoration: none;
   width: 8.9em;
 }
 
+.leftLink {
+  background: $fade-in-gradient;
+}
+
+.rightLink {
+  background: $fade-out-gradient;
+}
+
 .activeLink {
-  background-color: $pine-green;
+  background: $pine-green;
   color: $field-green;
 }
+

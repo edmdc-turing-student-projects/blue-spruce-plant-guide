@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styles from './Quiz.scss'
@@ -82,7 +82,5 @@ Quiz.propTypes = {
   round: PropTypes.number.isRequired,
   checkRoundAnswer: PropTypes.func.isRequired,
   quizLength: PropTypes.number.isRequired,
-  quizScore: PropTypes.number.isRequired,
-  toggleLoading: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  quizScore: PropTypes.number.isRequired
 }

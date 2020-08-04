@@ -12,12 +12,12 @@ import getColoradoNativePlants from '../Utils/ApiCalls'
 const initialSate = {
   plantCatalog: [],
   imageMode: false,
-  isLoading: false,
   currentQuiz: [],
   round: 0,
   quizLength: 10,
   quizScore: 0,
-  username: ''
+  username: '',
+  error: ''
 }
 
 function App() {
@@ -37,10 +37,12 @@ function App() {
     const getPlantInfo = async () => {
       try {
         const plantInfoRequests = await getColoradoNativePlants()
-        dispatch({ type: 'getPlants', payload: plantInfoRequests })
-        dispatch({ type: 'createQuiz' })
+        if (plantInfoRequests) {
+          dispatch({ type: 'getPlants', payload: plantInfoRequests })
+          dispatch({ type: 'createQuiz' })
+        }
       } catch (err) {
-        dispatch({ type: 'error', payload: { ...err } })
+        dispatch({ type: 'error', payload: err })
       }
     }
     getPlantInfo()
@@ -70,12 +72,11 @@ function App() {
     const { id } = currentQuiz[round].correctAnswer
     const buttonId = parseInt(event.target.id, 10)
     const answerScore = (id === buttonId) ? 1 : 0
-    dispatch({ type: 'isLoading', payload: true })
     dispatch({ type: 'roundCheck', payload: answerScore })
   }
 
-  function toggleLoading() {
-    dispatch({ type: 'isLoading', payload: !state.isLoading })
+  function startNewRound() {
+    dispatch({ type: 'resetQuiz' })
   }
 
   return (
@@ -101,8 +102,6 @@ function App() {
                       checkRoundAnswer={checkRoundAnswer}
                       quizLength={quizLength}
                       quizScore={quizScore}
-                      isLoading={isLoading}
-                      toggleLoading={toggleLoading}
                     />
                   )}
                 />
@@ -114,6 +113,7 @@ function App() {
                 <QuizResults
                   username={username}
                   score={quizScore}
+                  startNewRound={startNewRound}
                 />
               )}
             />
@@ -124,6 +124,7 @@ function App() {
           <Home
             setQuizSettings={setQuizSettings}
             handleChange={handleChange}
+            username={username}
           />
         </Route>
       </Router>

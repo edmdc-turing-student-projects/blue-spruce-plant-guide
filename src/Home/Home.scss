@@ -1,10 +1,31 @@
 @import '../App/App.scss';
 
+.welcomePage {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.welcomeBanner {
+  background: $fade-in-gradient;
+  border: 5px solid $pine-green;
+  height: 5vh;
+  text-align: center;
+  width: 70vw;
+  margin-bottom: 1em;
+
+  h2 {
+    padding-bottom: 5px;
+    margin: 0;
+    position: relative;
+    top: 3px;
+  }
+}
+
 .form {
-  position: absolute;
-  top: 25vh; left: 5vw;
-  border: 8px solid $field-gray;
-  background-color: $pine-green;
+  border: 5px solid $field-green;
+  background: $pine-green;
   display: flex;
   flex-flow: column;
   justify-content: space-around;
@@ -15,7 +36,7 @@
 .username {
   align-self: center;
   color: $pine-green;
-  background-color: $field-green;
+  background: $fade-out-gradient;
   margin-top: 3vh;
   height: 1.5em;
   width: 88%;
@@ -25,7 +46,7 @@
 .selectMenu,
 .quizStartButton {
   align-self: center;
-  background-color: $field-green;
+  background: $fade-out-gradient;
   width: 88%;
   height: 1.5em;
   font-size: 1.3em;

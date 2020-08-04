@@ -12,15 +12,15 @@ const createRequestPaths = () => {
 
 export default async function getColoradoNativePlants() {
   const { proxyUrl, coloradoNativePlantsUrl } = createRequestPaths()
-  const pageNumbers = ['2', '5', '13', '34', '89']
 
-  const responsePart = await fetch(`${proxyUrl}${coloradoNativePlantsUrl}&page=${pageNumbers[0]}`)
-  const { data } = await responsePart.json()
-  return data
+  try {
+    const response = await fetch(`${proxyUrl}${coloradoNativePlantsUrl}&page=2`)
+    if (response.ok) {
+      const { data } = await response.json()
+      return data
+    }
+  } catch (error) {
+    console.log(error)
+    return error
+  }
 }
-
-// const responsePartSix = await fetch(`${coloradoNativePlantsUrl}&page=13`)
-// const responsePartSeven = await fetch(`${coloradoNativePlantsUrl}&page=21`)
-// const responsePartEight = await fetch(`${coloradoNativePlantsUrl}&page=34`)
-// const responsePartNine = await fetch(`${coloradoNativePlantsUrl}&page=55`)
-// const responsePartTen = await fetch(`${coloradoNativePlantsUrl}&page=89`)
