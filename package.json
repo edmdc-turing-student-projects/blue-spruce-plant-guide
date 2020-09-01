@@ -1,7 +1,7 @@
 {
-  "name": "react-webpack-starter-kit",
+  "name": "blue-spruce-plant-guide",
   "version": "1.0.0",
-  "description": "Boilerplate for React Apps",
+  "description": "A Plant quiz to learn Colorado native plants",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",

@@ -2,7 +2,6 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { MemoryRouter as Router } from 'react-router-dom'
-import { mocked } from 'ts-jest/utils'
 import App from './App'
 import { getColoradoNativePlants, quizGenerator } from '../Utils/index'
 import mockPlantIndex from '../Utils/mockPlantIndex'
@@ -15,7 +14,7 @@ jest.mock('../Utils/quizGenerator')
 describe('App navigation from landing page', () => {
   getColoradoNativePlants.mockResolvedValue(mockPlantIndex)
   it('should navigate to plant index and display all plants', async () => {
-    const { debug, getByRole, findAllByRole } = render(
+    const { getByRole, findAllByRole } = render(
       <Router>
         <App />
       </Router>
@@ -32,8 +31,7 @@ describe('App navigation from landing page', () => {
 
 describe('App navigation to quiz', () => {
   quizGenerator.mockReturnValue(mockQuizData)
-  it('should navigate to quiz and default to scientific name quiz mode', async () => {
-    console.log(quizGenerator.mock.results[0].value[0])
+  it.skip('should navigate to quiz and default to scientific name quiz mode', async () => {
     const {
       getByRole, findByRole, findAllByRole, debug
     } = render(
