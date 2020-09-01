@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "test": "jest --watch"
+    "test": "jest --forceExit",
+    "test:watch": "jest --watch"
   },
   "author": "Edwin Montealvo",
   "license": "MIT",
