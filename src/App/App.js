@@ -29,8 +29,7 @@ function App() {
     round,
     quizLength,
     username,
-    quizScore,
-    isLoading
+    quizScore
   } = state
 
   useEffect(() => {

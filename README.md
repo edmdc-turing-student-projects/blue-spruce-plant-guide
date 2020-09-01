@@ -40,7 +40,7 @@ In your browser, navigate to `localhost:8080`.
     of our app and simplify testing.
 - Working with the trefle api and an external proxy proved difficult as neither
     proxy choice available to me proved reliable. This drained a bit of time
-    throughout the project that would have been better spent fine tuning 
+    throughout the project that would have been better spent fine tuning
     app logic and UI.
 
 ### Main Takeaway
@@ -55,7 +55,7 @@ In your browser, navigate to `localhost:8080`.
     I initially thought, especially as apps grow larger in scale and hooks are
     introduced.
 - Exercise better judgment when picking an api next time, and perhaps look into
-    building your own proxy for later projects that require it. 
+    building your own proxy for later projects that require it.
 
 ### Future Iterations
 

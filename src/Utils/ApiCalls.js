@@ -10,6 +10,7 @@ const createRequestPaths = () => {
   }
 }
 
+/* eslint-disable */
 export default async function getColoradoNativePlants() {
   const { proxyUrl, coloradoNativePlantsUrl } = createRequestPaths()
 
@@ -20,7 +21,7 @@ export default async function getColoradoNativePlants() {
       return data
     }
   } catch (error) {
-    console.log(error)
     return error
   }
 }
+/* eslint-enable */
