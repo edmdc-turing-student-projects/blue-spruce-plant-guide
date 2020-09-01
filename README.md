@@ -56,6 +56,14 @@ In your browser, navigate to `localhost:8080`.
     introduced.
 - Exercise better judgment when picking an api next time, and perhaps look into
     building your own proxy for later projects that require it.
+    
+### Project Images
+<img width="560" alt="Screen Shot 2020-09-01 at 1 17 04 PM" src="https://user-images.githubusercontent.com/60306770/91893062-3db8ff00-ec59-11ea-95af-6a2853bae7c0.png">
+
+
+![Screen Shot 2020-09-01 at 1 17 49 PM](https://user-images.githubusercontent.com/60306770/91893036-32fe6a00-ec59-11ea-879e-20963007c998.png)
+![Screen Shot 2020-09-01 at 1 19 19 PM](https://user-images.githubusercontent.com/60306770/91893040-34c82d80-ec59-11ea-90cf-64ef1cf01548.png)
+
 
 ### Future Iterations
 
