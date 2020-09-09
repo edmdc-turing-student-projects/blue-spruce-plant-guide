@@ -2,7 +2,7 @@ const createRequestPaths = () => {
   const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
   const rootUrl = 'https://trefle.io/api/v1'
   const apiToken = 'token=tz_mp8S975h1F3mwzjAKmXlkig-rSuOVhJlg858ToOM'
-  const path2ColoradoNativePlants = 'distributions/colorado/plants?filter%5Bestablishment%5D=native'
+  const path2ColoradoNativePlants = 'distributions/col/plants?filter%5Bestablishment%5D=native'
 
   return {
     proxyUrl,
