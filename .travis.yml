@@ -1,5 +1,11 @@
 language: node_js
 node_js:
-  - "node"
+- node
 notifications:
   email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: C8e/+yFqo8/J0PSFEPTj3lA9NP9rMd0Mk708l8QSKoRycAx3jkyz2Bp8s4ei5chC9Wgxpm4eysaZK30rGcsz/HgZZtg7476AZ/N9b3LDkTMH/Zg2P/mB0EigBOUD1rCo7FEeRV2VX28ekda3Snd4rSmDx5cofFdHTJGwYSSxUumUWRgBsDuTwg7NO44pDiB1/PQx74LcAlI7YNe3ap3lhyAi4eOIm9ieUVfzPk0w6evWUSp9t/xZVCU3GJtttjiCcgt540NOcHzVrc7UxylXsL4mtD3zWPqUqG+TOXGilPlJbGl3AiWAgF2Z3WYBn7qjbNQsSQpS5V3K5zDzy+yvsqwBqrepKEe4cBRzX0zMZ6sPbkU69patZV3HqpsbxEYxaeBQi4ilTsuvFn9za5kuB7xIbmuZnOMy4uDbhCReObehYBVPhqN96JYislvaHpMxrDsOC8QUctlc6jwL2zshEcSLTR3WlYtQaF/Jc96THVjSgZs93lmWXrgnL8thlhFLdQPWApUPlJmJMGaKrl4FJVgBPRBEZCFNE4IvZS5t19LcOx1Q54O3d1tJBDpu9LPms4E4GfrOPWQDICEuxa9h1y2uP+Pav4hgfwRFsXgI8uCcHE81s843+L6ji0j90tNFXc4jxuwm4w2hix+wFXyKwhqO5VHVTtQeSaoPs8rgozs=
+  app: blue-spruce-plant-guide
+  skip_cleanup: true
